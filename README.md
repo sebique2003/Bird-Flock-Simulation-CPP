@@ -1,4 +1,4 @@
-# 🌀 Bird Flock Simulation  - Proiect (Secvential vs. OpenMP vs. CUDA)
+# 🌀 Bird Flock Simulation  - Proiect (Secvențial vs. OpenMP vs. CUDA)
 
 > 📚 Proiect realizat în cadrul cursului de Programare Paralelă, Universitatea Transilvania Brașov.
 
