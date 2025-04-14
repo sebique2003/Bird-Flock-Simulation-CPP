@@ -6,6 +6,7 @@
 using namespace std;
 
 void openmp(vector<Boid>& boizi, int nr_iteratii) {
+    omp_set_num_threads(4);
     // parcurgem fiecare pas al simularii
     for (int pas = 0; pas < nr_iteratii; ++pas) {
         // cream o copie a boizilor pentru a nu afecta calculul curent
