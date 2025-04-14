@@ -2,6 +2,7 @@
 #define BOIDS_H
 
 #include <vector>
+using namespace std;
 
 // constante comportament boizi / pasari
 #define RAZA_ALINIERE 20.0f       // raza pentru regula de aliniere
@@ -20,6 +21,12 @@ struct Boid {
 };
 
 // fct secvential
-void simuleaza_boizi_secvential(std::vector<Boid>& boizi, int numar_pasi);
+void secvential(vector<Boid>& boizi, int nr_iteratii);
+// fct OpenMP
+void openmp(vector<Boid>& boizi, int nr_iteratii);
+// fct CUDA
+void cuda(vector<Boid>& boizi, int numar_pasi);
+// fct pentru compararea timpilor de executie
+void compareMethods(vector<Boid>& boids, int nr_iteratii);
 
 #endif

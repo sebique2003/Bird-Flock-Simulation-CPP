@@ -1,31 +1,37 @@
-﻿//#include "Header.h"
-//#include <iostream>
-//#include <chrono>
-//
-//using namespace std;
-//using namespace chrono;
-//
-//void compare_execution_times(const vector<Boid>& boids, int num_steps) {
-//    cout << "\nComparare timpi de execuție pentru cele 3 metode de simulare:\n";
-//
-//    // Timp pentru secvențial
-//    auto start_time = high_resolution_clock::now();
-//    simulate_boids_sequential(boids, num_steps);
-//    auto end_time = high_resolution_clock::now();
-//    auto duration = duration_cast<milliseconds>(end_time - start_time);
-//    cout << "Timp secvențial: " << duration.count() / 1000.0 << " secunde\n";
-//
-//    // Timp pentru OpenMP
-//    start_time = high_resolution_clock::now();
-//    simulate_boids_omp(boids, num_steps);
-//    end_time = high_resolution_clock::now();
-//    duration = duration_cast<milliseconds>(end_time - start_time);
-//    cout << "Timp OpenMP: " << duration.count() / 1000.0 << " secunde\n";
-//
-//    // Timp pentru CUDA
-//    start_time = high_resolution_clock::now();
-//    simulate_boids_cuda(boids, num_steps);
-//    end_time = high_resolution_clock::now();
-//    duration = duration_cast<milliseconds>(end_time - start_time);
-//    cout << "Timp CUDA: " << duration.count() / 1000.0 << " secunde\n";
-//}
+﻿#include "Header.h"
+#include <iostream>
+#include <chrono>
+#include <iomanip>
+
+using namespace std;
+using namespace chrono;
+
+void compareMethods(vector<Boid>& boids, int nr_iteratii) {
+	// copiem vectorul de boizi pentru fiecare metoda
+    vector<Boid> boizi_secvential = boids;
+    vector<Boid> boizi_openmp = boids;
+    vector<Boid> boizi_cuda = boids;
+
+    cout << fixed << setprecision(3);
+
+    // secvential
+    auto start_time = high_resolution_clock::now();
+    secvential(boizi_secvential, nr_iteratii);
+    auto end_time = high_resolution_clock::now();
+    duration<double> duration_sec = end_time - start_time;
+    cout << "\n### Timp de executie (Secvential): " << duration_sec.count() << " secunde\n";
+
+    // openmp
+    start_time = high_resolution_clock::now();
+    openmp(boizi_openmp, nr_iteratii);
+    end_time = high_resolution_clock::now();
+    duration<double> duration_omp = end_time - start_time;
+    cout << "\n### Timp de executie (OpenMP): " << duration_omp.count() << " secunde\n";
+
+    // cuda
+    start_time = high_resolution_clock::now();
+    cuda(boizi_cuda, nr_iteratii);
+    end_time = high_resolution_clock::now();
+    duration<double> duration_cuda = end_time - start_time;
+    cout << "\n### Timp de executie (CUDA): " << duration_cuda.count() << " secunde\n";
+}
