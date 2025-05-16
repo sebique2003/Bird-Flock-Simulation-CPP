@@ -100,7 +100,7 @@ __global__ void kernel (Boid* boizi, Boid* boizi_noi, int numar_boizi) {
 
 void cuda(vector<Boid>& boizi, int nr_iteratii) {
     Boid* d_boizi, * d_boizi_noi;
-    int numar_boizi = boizi.size();
+    int numar_boizi = static_cast<int>(boizi.size());
     size_t size = numar_boizi * sizeof(Boid);
 
     // alocam mem pe GPU
@@ -114,8 +114,8 @@ void cuda(vector<Boid>& boizi, int nr_iteratii) {
     int blockSize = 256;
     int gridSize = (numar_boizi + blockSize - 1) / blockSize;
 
-	// rulam kernel-ul pentru nr de pasi specificat
-    for (int pas = 0; pas < nr_iteratii; ++pas) {
+	// rulam kernel-ul pentru nr de ii specificat
+    for (int i = 0; i < nr_iteratii; ++i) {
         kernel << <gridSize, blockSize >> > (d_boizi, d_boizi_noi, numar_boizi);
         cudaDeviceSynchronize();
 

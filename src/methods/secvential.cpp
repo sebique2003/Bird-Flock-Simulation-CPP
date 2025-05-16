@@ -5,8 +5,8 @@
 using namespace std;
 
 void secvential(vector<Boid>& boizi, int nr_iteratii) {
-    // parcurgem fiecare pas al simularii
-    for (int pas = 0; pas < nr_iteratii; ++pas) {
+    // parcurgem fiecare i al simularii
+    for (int i = 0; i < nr_iteratii; ++i) {
         // cream o copie a boizilor pentru a nu afecta calculul curent
         vector<Boid> boizi_noi = boizi;
 
